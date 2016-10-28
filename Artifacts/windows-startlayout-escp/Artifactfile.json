@@ -9,11 +9,11 @@
     "tags": [
 
         "Regedit"
-		"StartLayout"
+	"StartLayout"
 
     ],
 
-    "iconUri": "",
+    "iconUri": "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-startlayout-escp/PowerShell_icon.png",
 
     "targetOsType": "Windows",
 
