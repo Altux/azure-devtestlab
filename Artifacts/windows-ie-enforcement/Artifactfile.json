@@ -9,11 +9,11 @@
     "tags": [
 
         "Regedit"
-		"IE"
+	"IE"
 
     ],
 
-    "iconUri": "",
+    "iconUri": "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-ie-enforcement/PowerShell_icon.png",
 
     "targetOsType": "Windows",
 
