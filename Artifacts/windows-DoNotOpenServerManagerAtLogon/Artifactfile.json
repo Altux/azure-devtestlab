@@ -13,7 +13,7 @@
 
     ],
 
-    "iconUri": "",
+    "iconUri": "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-DoNotOpenServerManagerAtLogon/PowerShell_icon.png",
 
     "targetOsType": "Windows",
 
