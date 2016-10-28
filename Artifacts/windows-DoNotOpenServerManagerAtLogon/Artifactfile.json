@@ -1,0 +1,28 @@
+{
+
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+
+    "title": "DoNotOpenServerManagerAtLogon",
+
+    "description": "Change the registry to stop the Server Manager to launch at start",
+
+    "tags": [
+
+        "Regedit"
+		"ServerManager"
+
+    ],
+
+    "iconUri": "",
+
+    "targetOsType": "Windows",
+
+    "parameters": {},
+
+    "runCommand": {
+
+        "commandToExecute": "['powershell.exe -executionpolicy bypass -File DoNotOpenServerManagerAtLogon.ps1']"
+
+    }
+
+}
