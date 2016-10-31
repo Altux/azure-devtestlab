@@ -1,31 +1,17 @@
 {
-
   "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
-
   "title": "Android Studio",
-
   "description": "Installs Android Studio using the Chocolatey package manager",
-
   "tags": [
-
     "Windows",
-
     "Android",
-	
-	"Studio",
-
+    "Studio",
     "Google"
-
   ],
-
-  "iconUri": "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-android-studio/Android_Studio_icon.png",
-
+  "iconUri": "https://chocolatey.org/content/packageimages/AndroidStudio.2.2.2.0.png",
   "targetOsType": "Windows",
-
   "runCommand": {
-
     "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./startChocolatey.ps1 -PackageList ', 'androidstudio', '\"')]"
-
   }
 
 }
