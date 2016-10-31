@@ -3,8 +3,8 @@
     "title": "Disable-ie-security",
     "description": "Disable ie security enforcement by registry editing",
     "tags": [
-        "Regedit",
-	"IE"
+	    "Regedit",
+	    "IE"
     ],
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
