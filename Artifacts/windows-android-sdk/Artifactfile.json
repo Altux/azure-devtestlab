@@ -6,11 +6,10 @@
         "SDK"
         "Android"
     ],
-    "iconUri": "",
+    "iconUri": "https://cdn.rawgit.com/digitaldrummerj/ChocolateyPackages/master/automatic/android-sdk/android.svg",
     "targetOsType": "Windows",
     "parameters": {},
     "runCommand": {
         "commandToExecute": "['powershell.exe -executionpolicy bypass -File Post-Install-android-studio.ps1']"
     }
-
 }
