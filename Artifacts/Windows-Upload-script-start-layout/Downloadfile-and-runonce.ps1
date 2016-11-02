@@ -1,5 +1,5 @@
-$url =  
-$path = C:\Packages\Scripts\Set-StartLayout-ESCP.ps1
+$url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Artifacts/Windows-Upload-script-start-layout/Set-StartLayout-ESCP.ps1" 
+$path = "C:\Packages\Scripts\Set-StartLayout-ESCP.ps1"
 
 New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
 $client = new-object System.Net.WebClient 
