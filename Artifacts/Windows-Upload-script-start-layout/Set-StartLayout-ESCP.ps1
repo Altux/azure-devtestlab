@@ -12,7 +12,7 @@ function Pin-App { param(
     ((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $App}).verbs() | ?{$_.Name.replace('&','') -match "Pin to Start"} | %{$_.DoIt()}
 }
 
-Start-Sleep -s 60
+Start-Sleep -s 30
 
 Unpin-App "Server Manager"
 Unpin-App "Windows Powershell"
