@@ -7,4 +7,4 @@ $client.DownloadFile($url, $path)
 
 $RunOnce ="HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 
-Set-itemProperty -Path $RunOnce -Name "StartLayout" -Value "powershell.exe -executionpolicy bypass -File C:\Packages\Scripts\Set-StartLayout-ESCP.ps1 -WindowStyle Hidden"
+Set-itemProperty -Path $RunOnce -Name "StartLayout" -Value "powershell.exe -executionpolicy bypass -File C:\Packages\Scripts\Set-StartLayout-ESCP.ps1"
