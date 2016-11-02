@@ -1,1 +1,0 @@
-[Environment]::UserName > C:\logs\toto.txt
