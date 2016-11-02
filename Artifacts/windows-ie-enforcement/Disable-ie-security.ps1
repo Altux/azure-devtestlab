@@ -10,14 +10,6 @@ Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0
 
 $FirstRunDisable = "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Main"
 
-$test = test-path "HKLM:\SOFTWARE\Policies\Microsoft\"
-if ($test -eq $false){
-  New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\" -Name "Internet Explorer"
-}
-
-$test = test-path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Main"
-if ($test -eq $false){
-  New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\" -Name "Main"
-}
-
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft" -Name "Internet Explorer"
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "Main"
 Set-ItemProperty -Path $FirstRunDisable -Name "DisableFirstRunCustomize" -Value 1
