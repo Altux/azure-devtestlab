@@ -3,8 +3,7 @@
     "title": "Post-Install-android-studio",
     "description": "Download SDK for Android Studio",
     "tags": [
-        "SDK",
-        "Android"
+        "SDK"
     ],
     "iconUri": "https://cdn.rawgit.com/digitaldrummerj/ChocolateyPackages/master/automatic/android-sdk/android.svg",
     "targetOsType": "Windows",
