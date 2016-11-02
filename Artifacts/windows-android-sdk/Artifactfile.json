@@ -5,7 +5,7 @@
     "tags": [
         "SDK"
     ],
-    "iconUri": "https://cdn.rawgit.com/digitaldrummerj/ChocolateyPackages/master/automatic/android-sdk/android.svg",
+    "iconUri": "",
     "targetOsType": "Windows",
     "parameters": {},
     "runCommand": {
