@@ -1,10 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
-    "title": "Set-StartLayout-ESCP",
-    "description": "Set the Start Layout for the ESCP course",
+    "title": "Username-test",
+    "description": "Give the username used by artifact",
     "tags": [
-        "Regedit",
-		"StartLayout"
+        "Username"
     ],
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
