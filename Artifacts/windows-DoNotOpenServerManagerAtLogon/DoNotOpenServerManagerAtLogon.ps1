@@ -1,5 +1,6 @@
-﻿#Do Not Open Server Manager At Logon
+#Do Not Open Server Manager At Logon
 
-$ServerManager ="HKCU:\Software\Microsoft\ServerManager"
-
-Set-itemProperty -Path $ServerManager -Name "DoNotOpenServerManagerAtLogon" -Value 1
+$ServerManager ="HKLM:\Software\Policies\Microsoft\Windows\Server\ServerManager"
+New-Item -Path HKLM:\Software\Policies\Microsoft\Windows\ -Name Server
+New-Item -Path HKLM:\Software\Policies\Microsoft\Windows\Server -Name ServerManager
+Set-itemProperty -Path $ServerManager -Name "DoNotOpenAtLogon" -Value 1
