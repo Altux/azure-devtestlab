@@ -15,7 +15,7 @@ function Pin-App { param(
 mkdir "C:\Users\Administrateur\AppData\Local\Android\Sdk"
 move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\Administrateur\AppData\Local\Android\Sdk"
 
-Start-Sleep -s 30
+Start-Sleep -s 45
 
 Unpin-App "Server Manager"
 Unpin-App "Windows Powershell"
