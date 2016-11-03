@@ -12,6 +12,9 @@ function Pin-App { param(
     ((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $App}).verbs() | ?{$_.Name.replace('&','') -match "Pin to Start"} | %{$_.DoIt()}
 }
 
+mkdir "C:\Users\Administrateur\AppData\Local\Android\Sdk"
+move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\Administrateur\AppData\Local\Android\Sdk"
+
 Start-Sleep -s 30
 
 Unpin-App "Server Manager"
