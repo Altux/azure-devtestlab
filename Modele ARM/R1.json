@@ -4,11 +4,11 @@
   "parameters": {
     "newVMName": {
       "type": "string",
-      "defaultValue": "R1-1"
+      "defaultValue": "R1"
     },
     "labName": {
       "type": "string",
-      "defaultValue": "Android-Studio"
+      "defaultValue": "Classe1"
     },
     "size": {
       "type": "string",
@@ -51,22 +51,22 @@
         "isAuthenticationWithSshKey": false,
         "artifacts": [
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo333', 'windows-android-studio')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-android-studio')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo333', 'windows-ie-enforcement')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-ie-enforcement')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo333', 'windows-DoNotOpenServerManagerAtLogon')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-DoNotOpenServerManagerAtLogon')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo333', 'Windows-Upload-script-start-layout')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'Windows-Upload-script-start-layout')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo333', 'windows-google-drive')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-google-drive')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo333', 'windows-android-sdk')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-android-sdk')]"
           }
         ],
         "labSubnetName": "[variables('labSubnetName')]",
