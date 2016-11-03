@@ -9,6 +9,5 @@ $client.DownloadFile($url, $path)
 
 C:\Packages\Scripts\installer_r24.4.1-windows.exe /S
 start-sleep 300
-mkdir "C:\Users\Administrateur\AppData\Local\Android\sdk"
-move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\Administrateur\AppData\Local\Android\sdk"
-echo y | C:\Users\Administrateur\AppData\Local\Android\sdk\tools\android.bat update sdk --no-ui
+
+echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui
