@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "newVMName": {
+      "Value": "R1"
+    },
+    "labName": {
+      "Value": "Classe1"
+    },
+    "size": {
+      "Value": "Standard_DS11_v2"
+    },
+    "userName": {
+      "Value": "Administrateur"
+    },
+    "password": {
+      "Value": "SuperPassword!"
+    }
+  }
+}
