@@ -3,20 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "newVMName": {
-      "type": "string",
-      "defaultValue": "R1"
+      "type": "string"
     },
     "labName": {
-      "type": "string",
-      "defaultValue": "Classe1"
+      "type": "string"
     },
     "size": {
-      "type": "string",
-      "defaultValue": "Standard_DS11_v2"
+      "type": "string"
     },
     "userName": {
-      "type": "string",
-      "defaultValue": "Administrateur"
+      "type": "string"
     },
     "password": {
       "type": "securestring"
@@ -27,8 +23,9 @@
     "labVirtualNetworkId": "[resourceId('Microsoft.DevTestLab/labs/virtualnetworks', parameters('labName'), variables('labVirtualNetworkName'))]",
     "labVirtualNetworkName": "[concat('Dtl', parameters('labName'))]",
     "vmId": "[resourceId ('Microsoft.DevTestLab/labs/virtualmachines', parameters('labName'), parameters('newVMName'))]",
-    "vmName": "[concat(parameters('labName'), '/', parameters('newVMName'))]"
-  },
+    "vmName": "[concat(parameters('labName'), '/', parameters('newVMName'))]",
+    "resourceType": "Microsoft.DevTestLab/labs/virtualMachines"   
+   },
   "resources": [
     {
       "apiVersion": "2016-05-15",
@@ -79,7 +76,7 @@
   "outputs": {
     "labVMId": {
       "type": "string",
-      "value": "[variables('vmId')]"
+      "value": "[resourceId(variables('resourceType'), parameters('LabName'), parameters('newVMName'))]"
     }
   }
 }
