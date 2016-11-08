@@ -1,8 +1,8 @@
 {
-    "Name":  "Rôle Enseignant",
+    "Name":  "Role Enseignant",
     "Id":  "",
     "IsCustom":  true,
-    "Description":  "Permet de voir uniquement les machines du lab et de réalisé les actions suivantes: Connecter, Démarrer, Eteindre les VMs",
+    "Description":  "Permet de voir uniquement les machines du lab et de realise les actions suivantes: Connecter, Demarrer, Eteindre les VMs",
     "Actions":  [
                     "Microsoft.DevTestLab/labs/read",
                     "Microsoft.DevTestLab/labs/virtualMachines/read",
