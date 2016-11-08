@@ -1,8 +1,8 @@
 {
-    "Name":  "Rôle Etudiant",
+    "Name":  "Role Etudiant",
     "Id":  "",
     "IsCustom":  true,
-    "Description":  "Permet uniquement d'interagir avec les VMs accordé et de réaliser les actions suivantes: Connecter, Démarrer, Eteindre les VMs",
+    "Description":  "Permet uniquement d'interagir avec les VMs accordees et de réaliser les actions suivantes: Connecter, Demarrer, Eteindre les VMs",
     "Actions":  [
                     "Microsoft.Compute/virtualMachines/read",
                     "Microsoft.Compute/virtualMachines/restart/action",
