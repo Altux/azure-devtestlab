@@ -7,7 +7,9 @@
                     "Microsoft.Compute/virtualMachines/read",
                     "Microsoft.Compute/virtualMachines/restart/action",
                     "Microsoft.Compute/virtualMachines/start/action",
-                    "Microsoft.Compute/virtualMachines/deallocate/action"
+                    "Microsoft.Compute/virtualMachines/deallocate/action",
+                    "Microsoft.Network/networkInterfaces/read",
+                    "Microsoft.Network/publicIPAddresses/read"
                 ],
     "NotActions":  [
 
