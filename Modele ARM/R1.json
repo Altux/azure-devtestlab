@@ -3,16 +3,20 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "newVMName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "elevetest"
     },
     "labName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "TEST-CLasse1"
     },
     "size": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "Standard_DS11_v2"
     },
     "userName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "Administrateur"
     },
     "password": {
       "type": "securestring"
@@ -23,9 +27,8 @@
     "labVirtualNetworkId": "[resourceId('Microsoft.DevTestLab/labs/virtualnetworks', parameters('labName'), variables('labVirtualNetworkName'))]",
     "labVirtualNetworkName": "[concat('Dtl', parameters('labName'))]",
     "vmId": "[resourceId ('Microsoft.DevTestLab/labs/virtualmachines', parameters('labName'), parameters('newVMName'))]",
-    "vmName": "[concat(parameters('labName'), '/', parameters('newVMName'))]",
-    "resourceType": "Microsoft.DevTestLab/labs/virtualMachines"   
-   },
+    "vmName": "[concat(parameters('labName'), '/', parameters('newVMName'))]"
+  },
   "resources": [
     {
       "apiVersion": "2016-05-15",
@@ -48,22 +51,22 @@
         "isAuthenticationWithSshKey": false,
         "artifacts": [
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-android-studio')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-android-studio')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-ie-enforcement')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-ie-enforcement')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-DoNotOpenServerManagerAtLogon')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-DoNotOpenServerManagerAtLogon')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'Windows-Upload-script-start-layout')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'Windows-Upload-script-start-layout')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-google-drive')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-google-drive')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-37xqhxbpciuu4', 'windows-android-sdk')]"
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-android-sdk')]"
           }
         ],
         "labSubnetName": "[variables('labSubnetName')]",
@@ -76,7 +79,7 @@
   "outputs": {
     "labVMId": {
       "type": "string",
-      "value": "[resourceId(variables('resourceType'), parameters('LabName'), parameters('newVMName'))]"
+      "value": "[variables('vmId')]"
     }
   }
 }
