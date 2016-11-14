@@ -26,7 +26,7 @@ mkdir "C:\Users\Administrateur\AppData\Local\Android\Sdk"
 move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\Administrateur\AppData\Local\Android\Sdk"
 
 
-C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10"
+C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)"
 DownloadFile("https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Applications%20Config%20File/Android%20Studio/config.ini", "C:\Users\Administrateur\.android\avd\ESCP-V3_API_10.avd")
 
 Start-Sleep -s 45
