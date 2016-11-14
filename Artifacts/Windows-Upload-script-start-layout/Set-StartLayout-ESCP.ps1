@@ -19,13 +19,12 @@ move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\
 #Creation of a AVD
 C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)"
 
-#Download the config.ini
+<#Download the config.ini
 $url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Applications%20Config%20File/Android%20Studio/config.ini"
 $path = "C:\Users\Administrateur\.android\avd\ESCP-V3_API_10.avd\config.ini"
 New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
 $client = new-object System.Net.WebClient 
-$client.DownloadFile($url, $path)
-
+$client.DownloadFile($url, $path)#>
 Start-Sleep -s 45
 
 #Create the Start-Layout
