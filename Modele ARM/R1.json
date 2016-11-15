@@ -3,12 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "newVMName": {
-      "type": "string",
-      "defaultValue": "elevetest4"
+      "type": "string"
     },
     "labName": {
-      "type": "string",
-      "defaultValue": "TEST-CLasse1"
+      "type": "string"
     },
     "size": {
       "type": "string",
