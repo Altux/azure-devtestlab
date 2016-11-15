@@ -25,6 +25,16 @@ $path = "C:\Users\Administrateur\.android\avd\ESCP-V3_API_10.avd\config.ini"
 New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
 $client = new-object System.Net.WebClient 
 $client.DownloadFile($url, $path)
+
+#Add GoogleDrive Shortcut to the desktop
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Google Drive.lnk")
+$Shortcut.TargetPath = "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
+$Shortcut.Save()
+
+#Change Hours
+C:\Windows\system32\tzutil /s "Romance Standard Time"
+
 Start-Sleep -s 45
 
 #Create the Start-Layout
@@ -41,3 +51,4 @@ Unpin-App "Remote Desktop Connection"
 Pin-App "Android Studio"
 Pin-App "Google Drive"
 Pin-App "File Explorer"
+Pin-App "Google Chrome"
