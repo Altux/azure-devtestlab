@@ -32,6 +32,12 @@ $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Google Drive.lnk")
 $Shortcut.TargetPath = "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
 $Shortcut.Save()
 
+#Add Android Studio Shortcut to the desktop
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Android Studio.lnk")
+$Shortcut.TargetPath = "C:\Program Files\Android\Android Studio\bin\studio64.exe"
+$Shortcut.Save()
+
 #Change Hours
 C:\Windows\system32\tzutil /s "Romance Standard Time"
 
