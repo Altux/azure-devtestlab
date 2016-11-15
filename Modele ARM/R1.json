@@ -4,7 +4,7 @@
   "parameters": {
     "newVMName": {
       "type": "string",
-      "defaultValue": "elevetest"
+      "defaultValue": "elevetest4"
     },
     "labName": {
       "type": "string",
@@ -67,6 +67,12 @@
           },
           {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-android-sdk')]"
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-RDP-443')]"
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-shutdown-force')]"
           }
         ],
         "labSubnetName": "[variables('labSubnetName')]",
