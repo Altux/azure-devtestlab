@@ -34,18 +34,15 @@ $Shortcut.Save()
 
 #Add Project Android Studio Shortcut to the desktop
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Android Studio.lnk")
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\AndroidStudioProjects.lnk")
 $Shortcut.TargetPath = "C:\Users\Administrateur\AndroidStudioProjects"
 $Shortcut.Save()
 
 #Add Android Studio Shortcut to the desktop
 
 $WshShell = New-Object -comObject WScript.Shell
-
 $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Android Studio.lnk")
-
 $Shortcut.TargetPath = "C:\Program Files\Android\Android Studio\bin\studio64.exe"
-
 $Shortcut.Save()
 
 #Change Hours
