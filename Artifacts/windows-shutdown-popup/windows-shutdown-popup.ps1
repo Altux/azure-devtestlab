@@ -82,6 +82,5 @@ Hide-Console
     
     })
 
-
 $form.Add_Shown({$form.Activate()})
 $form.ShowDialog()
