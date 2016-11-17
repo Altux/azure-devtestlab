@@ -1,7 +1,7 @@
 Add-Type -Name Window -Namespace Console -MemberDefinition '
 [DllImport("Kernel32.dll")]
 public static extern IntPtr GetConsoleWindow();
- 
+Â 
 [DllImport("user32.dll")]
 public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
 '
@@ -27,16 +27,16 @@ else {
 }
 
 function Hide-Console {
-    $consolePtr = [Console.Window]::GetConsoleWindow()
-  #0 hide
- [Console.Window]::ShowWindow($consolePtr, 0)
+Â Â Â Â $consolePtr = [Console.Window]::GetConsoleWindow()
+Â Â #0 hide
+Â [Console.Window]::ShowWindow($consolePtr, 0)
 }
 Hide-Console
-
+ 
 #Temps d'attente
     $max = 3600
 
-#Créer une fenetre
+#CrÃ©er une fenetre
     $form = New-Object System.Windows.Forms.Form 
     $form.Text = "Temps restant"
     $form.Size = New-Object System.Drawing.Size(250,55)
