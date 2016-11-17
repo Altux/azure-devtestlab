@@ -7,5 +7,6 @@ $client.DownloadFile($url, $path)
 
 $A = New-ScheduledTaskAction -Execute "powershell.exe" -argument "C:\Packages\Scripts\windows-shutdown-popup.ps1"
 $T = New-ScheduledTaskTrigger -AtLogon
-$D = New-ScheduledTask -Action $A -Trigger $T
+$P = "Administrateur"
+$D = New-ScheduledTask -Action $A -Trigger $T -Principal $P
 Register-ScheduledTask T1 -InputObject $D
