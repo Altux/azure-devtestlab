@@ -14,15 +14,6 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 # Functions
 #
 
-function DesktopShortcut ($name,$target)
-{
-	write-host "Creating $name Shortcut to the Desktop..."
-	$WshShell = New-Object -comObject WScript.Shell
-	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\$name.lnk")
-	$Shortcut.TargetPath = $target
-	$Shortcut.Save()
-}
-
 function Unpin-App 
 { 
 	param([string]$App)
@@ -41,14 +32,14 @@ function SetupAndroidStudio{
 	Write-host "Setup of the Android Studio"
 
 	#Creation of a AVD
-		C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)"
+		C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)" | Out-Null
 
 	#Download the config.ini
 		$url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Applications%20Config%20File/Android%20Studio/config.ini"
 		$path = "C:\Users\Administrateur\.android\avd\ESCP-V3_API_10.avd\config.ini"
-		New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
+		New-Item -ItemType Directory -Force -Path (Split-Path -parent $path) | Out-Null    
 		$client = new-object System.Net.WebClient 
-		$client.DownloadFile($url, $path)
+		$client.DownloadFile($url, $path) 
 
 
 	#Add Project Android Studio Shortcut to the desktop
@@ -56,7 +47,7 @@ function SetupAndroidStudio{
 		$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\AndroidStudioProjects.lnk")
 		$Shortcut.TargetPath = "C:\Windows\explorer.exe"
 		$Shortcut.Arguments ="C:\Users\Administrateur\AndroidStudioProjects"
-		$Shortcut.Save()
+		$Shortcut.Save() | Out-Null
 
 }
 
@@ -70,12 +61,20 @@ try
 	SetupAndroidStudio
 
 	#Add Shorcut to the desktop
-	DesktopShortcut ("Google Drive", "C:\Program Files (x86)\Google\Drive\googledrivesync.exe")
-	DesktopShortcut ("Android Studio", "C:\Program Files\Android\Android Studio\bin\studio64.exe")
-	DesktopShortcut ("GoogleDrive", "C:\Program Files (x86)\Google\Drive\googledrivesync.exe")
-	DesktopShortcut ("GoogleDrive", "C:\Program Files (x86)\Google\Drive\googledrivesync.exe")
-	
+    write-host "Creating Google Drive Shortcut to the Desktop..."
+    $WshShell = New-Object -comObject WScript.Shell
+	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Google Drive.lnk")
+	$Shortcut.TargetPath = "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
+	$Shortcut.Save()
+
+    write-host "Creating Android Studio Shortcut to the Desktop..."
+    $WshShell = New-Object -comObject WScript.Shell
+	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Android Studio.lnk")
+	$Shortcut.TargetPath = "C:\Program Files\Android\Android Studio\bin\studio64.exe"
+	$Shortcut.Save()
+
 	#Change Hours
+    write-host "Changing Hour..."
 	C:\Windows\system32\tzutil /s "Romance Standard Time"
 	
 	Start-Sleep -s 45
@@ -103,6 +102,5 @@ catch
 {
 	write-host "An Error Occured"
     return -1
-
 }
 
