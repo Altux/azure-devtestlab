@@ -4,7 +4,7 @@
     "description": "Install Android Studio via Chocolatey and install the SDK",
     "tags": [
         "Android",
-		"SDK"
+	"SDK"
     ],
     "iconUri": "https://cdn.rawgit.com/chocolatey/chocolatey-coreteampackages/e4a49519947c3cff55c17a0b08266c56b0613e64/icons/chrome.svg",
     "targetOsType": "Windows",
