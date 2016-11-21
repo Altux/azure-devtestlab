@@ -4,19 +4,17 @@
     "description": "Download a script to be launch at first login",
     "tags": [
         	"Windows",
-		"Download",
-		"RunOnce"
+		      "Download",
+		      "RunOnce"
     ],
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
-	"parameters": {
+    "parameters": {
         "URL": {
             "type": "string",
             "displayName": "URL",
-            "description": "Put here the Post Deployment Script URL ex: https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/ESCP-PostDeployment.ps1"
+            "description": "Put here the Post Deployment Script URL"
         }
     },
-    "runCommand": {
-		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./Downloadfile-and-runonce.ps1 ''', parameters('URL'), '''\"')]"
-		}
+    "runCommand": {"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./Downloadfile-and-runonce.ps1 ''', parameters('URL'), '''\"')]"}
 }
