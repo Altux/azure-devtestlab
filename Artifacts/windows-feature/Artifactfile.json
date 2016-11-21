@@ -10,16 +10,16 @@
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
     "parameters": {
-		"FeatureName": {
+	"FeatureName": {
             "type": "string",
             "displayName": "Feature",
-            "description": "Put here the Feature ex: Internet-Explorer-Optional-amd64"*
-		}
+            "description": "Put here the Feature ex: Internet-Explorer-Optional-amd64"
+	},
 		
-		"Action": {
+	"Action": {
             "type": "string",
-			"allowedValues": [ "enable", "disable" ]
-		}	
+	    "allowedValues": [ "enable", "disable" ]
+	}	
 	},
     "runCommand": {
 		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./WindowsFeature.ps1 ''', parameters('FeatureName'), ''', parameters('Action'), '''\"')]"
