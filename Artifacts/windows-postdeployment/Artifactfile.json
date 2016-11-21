@@ -3,7 +3,7 @@
     "title": "Post Deployment Script",
     "description": "Download a script to be launch at first login",
     "tags": [
-        "Windows",
+        	"Windows",
 		"Download",
 		"RunOnce"
     ],
@@ -14,6 +14,7 @@
             "type": "string",
             "displayName": "URL",
             "description": "Put here the Post Deployment Script URL ex: https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/ESCP-PostDeployment.ps1"
+        }
     },
     "runCommand": {
 		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./Downloadfile-and-runonce.ps1 ''', parameters('URL'), '''\"')]"
