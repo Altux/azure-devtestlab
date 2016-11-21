@@ -9,18 +9,19 @@
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
     "parameters": {
-		"Name": {
+	"Name": {
             "type": "string",
             "displayName": "Account",
             "description": "Enter the Account Name"
         },
-		"Password": {
+	    
+	"Password": {
             "type": "string",
             "displayName": "Password",
             "description": "Enter the Password for the new Admnistrator"
         }
 	
-	}
+	},
     "runCommand": {
         "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./New-Local-Admin.ps1 ''', parameters('Name'), ''', parameters('Password'),'''\"')]"
    }
