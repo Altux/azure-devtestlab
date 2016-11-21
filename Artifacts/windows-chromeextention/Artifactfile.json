@@ -1,0 +1,21 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+    "title": "Install Chrome Extention",
+    "description": "Install Chrome Extention",
+    "tags": [
+        "Chrome",
+		"Extention",
+		"Registry"
+    ],
+    "iconUri": "https://cdn.rawgit.com/chocolatey/chocolatey-coreteampackages/e4a49519947c3cff55c17a0b08266c56b0613e64/icons/chrome.svg",
+    "targetOsType": "Windows",
+    "parameters": {
+        "ID": {
+            "type": "string",
+            "displayName": "ID",
+            "description": "Enter the Extention ID"
+        },
+    "runCommand": {
+		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./InstallChromeExtention.ps1 ''', parameters('ID'), '''\"')]"
+    }
+}
