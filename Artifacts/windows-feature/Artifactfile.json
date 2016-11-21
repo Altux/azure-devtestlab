@@ -4,8 +4,9 @@
     "description": "Windows Feature Add / Remove",
     "tags": [
         "Feature",
-		"Add",
-		"Remove"
+		"Enable",
+		"Disable",
+	    	"Feature"
     ],
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
@@ -18,7 +19,7 @@
 		
 	"Action": {
             "type": "string",
-	    "allowedValues": [ "enable", "disable" ]
+	    "allowedValues": [ "Enable", "Disable" ]
 	}	
 	},
     "runCommand": {
