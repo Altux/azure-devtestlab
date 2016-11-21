@@ -21,7 +21,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 try
 {
-	if ($action -eq "disable"){
+	if ($action -eq "Disable"){
         write-host "Disabling $featureName..."
 		disable-WindowsOptionalFeature -Online -FeatureName $FeatureName -NoRestart | Out-Null
         write-host "Success"
