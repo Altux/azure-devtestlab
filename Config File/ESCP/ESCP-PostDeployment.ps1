@@ -24,7 +24,7 @@ function Unpin-App
 function Pin-App 
 { 
 	param([string]$App)
-    ((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $App}).verbs() | ?{$_.Name.replace('&','') -match "Pin to Start"} | %{$_.DoIt()}
+    	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $App}).verbs() | ?{$_.Name.replace('&','') -match "Pin to Start"} | %{$_.DoIt()}
 	write-host "Adding $app to the start-menu ..."
 }
 
@@ -61,20 +61,20 @@ try
 	SetupAndroidStudio
 
 	#Add Shorcut to the desktop
-    write-host "Creating Google Drive Shortcut to the Desktop..."
-    $WshShell = New-Object -comObject WScript.Shell
+    	write-host "Creating Google Drive Shortcut to the Desktop..."
+    	$WshShell = New-Object -comObject WScript.Shell
 	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Google Drive.lnk")
 	$Shortcut.TargetPath = "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
 	$Shortcut.Save()
 
-    write-host "Creating Android Studio Shortcut to the Desktop..."
-    $WshShell = New-Object -comObject WScript.Shell
+    	write-host "Creating Android Studio Shortcut to the Desktop..."
+    	$WshShell = New-Object -comObject WScript.Shell
 	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Android Studio.lnk")
 	$Shortcut.TargetPath = "C:\Program Files\Android\Android Studio\bin\studio64.exe"
 	$Shortcut.Save()
 
 	#Change Hours
-    write-host "Changing Hour..."
+    	write-host "Changing Hour..."
 	C:\Windows\system32\tzutil /s "Romance Standard Time"
 	
 	Start-Sleep -s 45
