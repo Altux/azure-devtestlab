@@ -2,7 +2,11 @@
 #Argument
 #
 
-$EXTENTIONID = $args[0]
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$true)][string] $EXTENTIONID
+)
 
 ###################################################################################################
 
