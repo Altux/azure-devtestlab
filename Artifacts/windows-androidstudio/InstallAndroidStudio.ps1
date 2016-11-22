@@ -22,18 +22,9 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 # Functions
 #
 
-function InstallChocolatey
+function InstallAndroidStudio
 {
-    Write-host "Installing Chocolatey..."
-    Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
-    Write-host "Success."
-}
-
-function Install($Application)
-{
-    write-host "Installing $Application..."
-	choco install $Application --force --yes --acceptlicense --verbose | Out-Null
-    Write-host "Success."
+    powershell.exe -ExecutionPolicy bypass ./startChocolatey.ps1 -PackageList androidstudio
 }
 
 function InstallSDK($urlsdk)
@@ -64,11 +55,8 @@ function SetupSDK
 
 try
 {	
-	# install the chocolatey package manager
-    InstallChocolatey
-
 	# install AndroidStudio
-	Install("AndroidStudio")
+	InstallAndroidStudio
 	
 	#Setup the SDK (Download Install)
 	InstallSDK($urlsdk)
