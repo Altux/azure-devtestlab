@@ -18,6 +18,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 ###################################################################################################
 
 #
+
 # Functions
 #
 
@@ -40,6 +41,7 @@ function InstallSDK($urlsdk)
 
 	#Download SDK
     write-host "Downloading SDKs..."
+    dir C:\Users
 	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui 
 }
 
