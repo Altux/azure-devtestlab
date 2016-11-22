@@ -23,6 +23,6 @@
 	}	
 	},
     "runCommand": {
-		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./WindowsFeature.ps1 ''', parameters('FeatureName'), ''', parameters('Action'), '''\"')]"
-	}
+		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File WindowsFeature.ps1 ', parameters('FeatureName'), ' ', parameters('Action'))]"
+    }
 }
