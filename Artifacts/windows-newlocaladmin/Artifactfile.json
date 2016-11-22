@@ -22,6 +22,6 @@
         }
 	},
     "runCommand": {
-        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./New-Local-Admin.ps1 ''', parameters('Name'), ''', parameters('Password'),'''\"')]"
-   }
+    	  "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File New-Local-Admin.ps1 ', parameters('Name'), ' ', parameters('Password'))]"    
+    }
 }
