@@ -2,8 +2,12 @@
 #Arguments
 #
 
-$FeatureName = $args[0]
-$action = $args[1]
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$true)][string] $FeatureName,
+    [Parameter(Mandatory=$true)][string] $Action
+)
+
 
 ###################################################################################################
 
@@ -21,7 +25,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 try
 {
-	if ($action -eq "Disable"){
+	if ($Action -eq "Disable"){
         write-host "Disabling $featureName..."
 		disable-WindowsOptionalFeature -Online -FeatureName $FeatureName -NoRestart | Out-Null
         write-host "Success"
