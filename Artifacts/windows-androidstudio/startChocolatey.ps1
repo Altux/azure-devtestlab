@@ -266,10 +266,3 @@ catch
 {
     Handle-LastError
 }
-finally
-{
-    if ($PsCmdlet.ParameterSetName -ne 'CustomUser')
-    {
-        Remove-LocalAdminUser -UserName $UserName
-    }
-}
