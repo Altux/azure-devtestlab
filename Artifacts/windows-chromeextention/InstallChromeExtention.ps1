@@ -33,23 +33,9 @@ function DisplayArgValues
 	write-host "========== Configuration =========="
 } 
 
-function InstallChocolatey
-{
-    Write-host "Installing Chocolatey..."
-    Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
-    Write-host "Success."
-}
-
 function InstallChrome
 {
-    write-host "Installing Google Chrome..."
-	choco install googlechrome --force --yes --acceptlicense --verbose | Out-Null
-	if ($? -eq $false)
-    {
-        $errMsg = $("Error! Installation failed. Please see the chocolatey logs in %ALLUSERSPROFILE%\chocolatey\logs folder for details.")
-        write-host $errMsg
-    }
-    Write-host "Success."
+    powershell.exe -ExecutionPolicy bypass ./startChocolatey.ps1 -PackageList googlechrome
 }
 
 function InstallExtention ($IDEXTENTION)
@@ -76,9 +62,6 @@ try
 {
 	#Display Argument
 	DisplayArgValues
-	
-	# install the chocolatey package manager
-    InstallChocolatey
 
 	# install Google Chrome
 	InstallChrome
