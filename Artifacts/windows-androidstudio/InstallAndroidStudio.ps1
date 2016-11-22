@@ -41,17 +41,18 @@ function InstallSDK($urlsdk)
 
 	#Download SDK
     write-host "Downloading SDKs..."
-	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui
+	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui 
 }
 
 function SetupSDK
 {
 	#Create a script to move SDK to the User Folder 
     write-host "Setup Android Studio..."
-    	mkdir "C:\Packages\Script\Sdk"
-    	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Packages\Script\Sdk'
-	New-Item C:\Packages\Scripts\RunOnce.SDKmove.ps1 -type file -value "mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Packages\Script\Sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk'" | Out-Null
-    Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
+    	mkdir "C:\Packages\Script\Sdk" | Out-Null
+    	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Packages\Scripts\Sdk' | Out-Null
+	New-Item C:\Packages\Scripts\RunOnce.SDKmove.ps1 -type file -value "mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Packages\Scripts\Sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk'" | Out-Null
+    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
+    write-host "Success"
 }
 ##################################################################################################
 
