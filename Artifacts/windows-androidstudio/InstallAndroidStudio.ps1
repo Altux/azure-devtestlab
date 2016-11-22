@@ -33,11 +33,6 @@ function Install($Application)
 {
     write-host "Installing $Application..."
 	choco install $Application --force --yes --acceptlicense --verbose | Out-Null
-	if ($? -eq $false)
-    {
-        $errMsg = $("Error! Installation failed. Please see the chocolatey logs in %ALLUSERSPROFILE%\chocolatey\logs folder for details.")
-        write-host $errMsg
-    }
     Write-host "Success."
 }
 
@@ -46,8 +41,8 @@ function InstallSDK($urlsdk)
 	#Install SDKManager
     write-host "Installing SDK Manager..."
 	New-Item -ItemType Directory -Force -Path (Split-Path -parent "C:\Packages\Scripts\AndroidSDK.exe")    
-	$client = new-object System.Net.WebClient 
-	$client.DownloadFile($urlsdk, "C:\Packages\Scripts\AndroidSDK.exe") | Out-Null
+	$client = new-object System.Net.WebClient | Out-Null
+	$client.DownloadFile($urlsdk, "C:\Packages\Scripts\AndroidSDK.exe") 
 
 	#Install SDKManager
 	C:\Packages\Scripts\AndroidSDK.exe /S
@@ -55,7 +50,7 @@ function InstallSDK($urlsdk)
 
 	#Download SDK
     write-host "Downloading SDKs..."
-	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui | Out-Null
+	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui
 }
 
 function SetupSDK
