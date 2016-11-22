@@ -16,5 +16,5 @@
             "description": "Put here the Post Deployment Script URL"
         }
     },
-    "runCommand": {"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./Downloadfile-and-runonce.ps1 ''', parameters('URL'), '''\"')]"}
+    "runCommand": {"commandToExecute": ""commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File Downloadfile-and-runonce.ps1 ', parameters('URL'))]"}  
 }
