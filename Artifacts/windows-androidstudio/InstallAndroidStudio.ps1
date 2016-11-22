@@ -1,11 +1,4 @@
 #
-#Argument
-#
-
-$urlsdk = "https://dl.google.com/android/installer_r24.4.1-windows.exe"
-
-###################################################################################################
-#
 # Powershell Configurations
 #
 
@@ -18,30 +11,40 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 ###################################################################################################
 
 #
-
 # Functions
 #
+
+function Remove-LocalAdminUser
+{
+    [CmdletBinding()]
+    param(
+        [string] $UserName
+    )
+
+    if ([ADSI]::Exists('WinNT://./' + $UserName))
+    {
+        $computer = [ADSI]"WinNT://$env:ComputerName"
+        $computer.Delete('User', $UserName)
+        try
+        {
+            gwmi win32_userprofile | ? { $_.LocalPath -like "*$UserName*" -and -not $_.Loaded } | % { $_.Delete() | Out-Null }
+        }
+        catch
+        {
+            # Ignore any errors, specially with locked folders/files. It will get cleaned up at a later time, when another artifact is installed.
+        }
+    }
+}
 
 function InstallAndroidStudio
 {
     powershell.exe -ExecutionPolicy bypass ./startChocolatey.ps1 -PackageList androidstudio
 }
 
-function InstallSDK($urlsdk)
+function InstallSDK
 {
-	#Install SDKManager
-    write-host "Installing SDK Manager..."
-	New-Item -ItemType Directory -Force -Path (Split-Path -parent "C:\Packages\Scripts\AndroidSDK.exe")    
-	$client = new-object System.Net.WebClient | Out-Null
-	$client.DownloadFile($urlsdk, "C:\Packages\Scripts\AndroidSDK.exe") 
-
-	#Install SDKManager
-	C:\Packages\Scripts\AndroidSDK.exe /S
-	start-sleep 300
-
 	#Download SDK
     write-host "Downloading SDKs..."
-    dir C:\Users
 	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui 
 }
 
@@ -49,10 +52,9 @@ function SetupSDK
 {
 	#Create a script to move SDK to the User Folder 
     write-host "Setup Android Studio..."
-    	mkdir "C:\Packages\Script\Sdk" | Out-Null
-    	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Packages\Scripts\Sdk' | Out-Null
-	New-Item C:\Packages\Scripts\RunOnce.SDKmove.ps1 -type file -value "mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Packages\Scripts\Sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk'" | Out-Null
-    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
+        mkdir "C:\Users\Default\AppData\Local\Android"
+        mkdir "C:\Users\Default\AppData\Local\Android\sdk"
+        move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\Default\AppData\Local\Android\sdk" 
     write-host "Success"
 }
 
@@ -64,8 +66,8 @@ try
 	# install AndroidStudio
 	InstallAndroidStudio
 	
-	#Setup the SDK (Download Install)
-	InstallSDK($urlsdk)
+	#Setup the SDK
+	InstallSDK
 	SetupSDK
 
 	return 0
@@ -77,3 +79,6 @@ catch
 	return -1
 }
 
+finally{
+    Remove-LocalAdminUser "artifactInstaller"
+}
