@@ -1,5 +1,5 @@
 #Download Zip
-$url = "..." 
+$url = "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-AppleKeyboardLayout/AppleKeyboard.zip?raw=true" 
 $path = "C:\Packages\Scripts\AppleKeyboard.ps1"
 New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
 $client = new-object System.Net.WebClient 
@@ -8,10 +8,10 @@ $client.DownloadFile($url, $path)
 
 #Unzzip Keyboards in system32
 $shell = new-object -com shell.application
-$zip = $shell.NameSpace(ìC:\Packages\Scripts\AppleKeyboard.zipî)
+$zip = $shell.NameSpace(‚ÄúC:\Packages\Scripts\AppleKeyboard.zip‚Äù)
 foreach($item in $zip.items())
 {
-    $shell.Namespace(ìC:\windows\system32î).copyhere($item)
+    $shell.Namespace(‚ÄúC:\windows\system32‚Äù).copyhere($item)
 }
 
 #Change Registry
