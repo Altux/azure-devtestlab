@@ -6,13 +6,11 @@ $client = new-object System.Net.WebClient
 $client.DownloadFile($url, $path)
 
 
-#Unzzip Keyboards in system32
-$shell = new-object -com shell.application
-$zip = $shell.NameSpace("C:\Packages\Scripts\AppleKeyboard.zip")
-foreach($item in $zip.items())
-{
-    $shell.Namespace("C:\windows\system32").copyhere($item)
-}
+#Unzip Keyboards in system32
+$shell_app=new-object -com shell.application
+$zip_file = $shell_app.namespace("C:\Packages\Scripts\AppleKeyboard.zip")
+$destination = $shell_app.namespace("C:\windows\system32")
+$destination.Copyhere($zip_file.items())
 
 #Change Registry
 $Reg = @"
