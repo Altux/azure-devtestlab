@@ -16,5 +16,5 @@
       		"description": "Enter the Extention ID"
     	}
      },
-    "runCommand": {"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./InstallChromeExtention.ps1 ''', parameters('ID'), '''\"')]"}
+    "runCommand": {"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File InstallChromeExtention.ps1 ', parameters('ID'))]"}
 }
