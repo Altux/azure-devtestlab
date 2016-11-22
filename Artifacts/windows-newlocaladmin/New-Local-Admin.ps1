@@ -2,8 +2,11 @@
 #Arguments
 #
 
-$Account=args[0]
-$Password=args[1]
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$true)][string] $Account,
+    [Parameter(Mandatory=$true)][string] $Password
+)
 
 ###################################################################################################
 
