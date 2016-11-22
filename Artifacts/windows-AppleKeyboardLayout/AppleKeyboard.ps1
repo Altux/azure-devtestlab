@@ -1,6 +1,6 @@
 #Download Zip
 $url = "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-AppleKeyboardLayout/AppleKeyboard.zip?raw=true" 
-$path = "C:\Packages\Scripts\AppleKeyboard.ps1"
+$path = "C:\Packages\Scripts\AppleKeyboard.zip"
 New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
 $client = new-object System.Net.WebClient 
 $client.DownloadFile($url, $path)
