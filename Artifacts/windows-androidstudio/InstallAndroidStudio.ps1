@@ -5,7 +5,6 @@
 $urlsdk = "https://dl.google.com/android/installer_r24.4.1-windows.exe"
 
 ###################################################################################################
-
 #
 # Powershell Configurations
 #
@@ -22,23 +21,9 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 # Functions
 #
 
-function InstallChocolatey
+function InstallAndroidStudio
 {
-    Write-host "Installing Chocolatey..."
-    Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
-    Write-host "Success."
-}
-
-function Install($Application)
-{
-    write-host "Installing $Application..."
-	choco install $Application --force --yes --acceptlicense --verbose | Out-Null
-	if ($? -eq $false)
-    {
-        $errMsg = $("Error! Installation failed. Please see the chocolatey logs in %ALLUSERSPROFILE%\chocolatey\logs folder for details.")
-        write-host $errMsg
-    }
-    Write-host "Success."
+    powershell.exe -ExecutionPolicy bypass ./startChocolatey.ps1 -PackageList androidstudio
 }
 
 function InstallSDK($urlsdk)
@@ -46,8 +31,8 @@ function InstallSDK($urlsdk)
 	#Install SDKManager
     write-host "Installing SDK Manager..."
 	New-Item -ItemType Directory -Force -Path (Split-Path -parent "C:\Packages\Scripts\AndroidSDK.exe")    
-	$client = new-object System.Net.WebClient 
-	$client.DownloadFile($urlsdk, "C:\Packages\Scripts\AndroidSDK.exe") | Out-Null
+	$client = new-object System.Net.WebClient | Out-Null
+	$client.DownloadFile($urlsdk, "C:\Packages\Scripts\AndroidSDK.exe") 
 
 	#Install SDKManager
 	C:\Packages\Scripts\AndroidSDK.exe /S
@@ -55,25 +40,27 @@ function InstallSDK($urlsdk)
 
 	#Download SDK
     write-host "Downloading SDKs..."
-	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui | Out-Null
+	echo y | C:\Users\ArtifactInstaller\AppData\Local\Android\Android-sdk\tools\android.bat update sdk --no-ui 
 }
 
 function SetupSDK
 {
 	#Create a script to move SDK to the User Folder 
     write-host "Setup Android Studio..."
-	New-Item C:\Packages\Scripts\RunOnce.SDKmove.ps1 -type file -value "mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk'" | Out-Null
-    Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
+    	mkdir "C:\Packages\Script\Sdk" | Out-Null
+    	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Packages\Scripts\Sdk' | Out-Null
+	New-Item C:\Packages\Scripts\RunOnce.SDKmove.ps1 -type file -value "mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Packages\Scripts\Sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk'" | Out-Null
+    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
+    write-host "Success"
 }
+
 ##################################################################################################
 
 try
-{	
-	# install the chocolatey package manager
-    InstallChocolatey
 
+{	
 	# install AndroidStudio
-	Install("AndroidStudio")
+	InstallAndroidStudio
 	
 	#Setup the SDK (Download Install)
 	InstallSDK($urlsdk)
@@ -85,6 +72,6 @@ try
 catch
 {
 	write-host "An Error Occured"
-    return -1
+	return -1
 }
 
