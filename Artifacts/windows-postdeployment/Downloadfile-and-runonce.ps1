@@ -2,7 +2,12 @@
 #Arguments
 #
 
-$url = $args[0]
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$true)][string] $url
+)
+
 $path = "C:\Packages\Scripts\PostDeployment.ps1"
 
 ###################################################################################################
