@@ -3,16 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "newVMName": {
-      "type": "string",
-      "defaultValue": "TEST1"
+      "type": "string"
     },
     "labName": {
-      "type": "string",
-      "defaultValue": "TEST-CLasse1"
+      "type": "string"
     },
     "size": {
-      "type": "string",
-      "defaultValue": "Standard_DS11_v2"
+      "type": "string"
     },
     "userName": {
       "type": "string",
@@ -54,19 +51,13 @@
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-android-studio')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-chrome')]"
-          },
-          {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-google-drive')]"
-          },
-          {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'Windows-Chrome-Extention')]"
-          },
-          {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-DoNotOpenServerManagerAtLogon')]"
           },
           {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'Windows-Upload-script-start-layout')]"
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-google-drive')]"
           },
           {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'Windows-NewUser')]"
@@ -75,13 +66,19 @@
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-android-sdk')]"
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-RDP-443')]"
-          },
-          {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-shutdown-popup')]"
           },
           {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-uninstall-IE')]"
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-RDP-443')]"
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-chrome')]"
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'Windows-Chrome-Extention')]"
           }
         ],
         "labSubnetName": "[variables('labSubnetName')]",
