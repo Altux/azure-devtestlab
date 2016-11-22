@@ -8,10 +8,10 @@ $client.DownloadFile($url, $path)
 
 #Unzzip Keyboards in system32
 $shell = new-object -com shell.application
-$zip = $shell.NameSpace(“C:\Packages\Scripts\AppleKeyboard.zip”)
+$zip = $shell.NameSpace("C:\Packages\Scripts\AppleKeyboard.zip")
 foreach($item in $zip.items())
 {
-    $shell.Namespace(“C:\windows\system32”).copyhere($item)
+    $shell.Namespace("C:\windows\system32").copyhere($item)
 }
 
 #Change Registry
