@@ -3,16 +3,12 @@
     Description
     ===========
 
-	Change the RDP Port 
+	Set up for WIndows Server, this will set the system to not bring the Server Manager At Logon
 
     Usage examples
     ==============
 
-    PowerShell -ExecutionPolicy bypass ./Windows-RDP-443.ps1 -port <Port Number>
-   
-    Where,
-      <Port Number> is the new port use by the RDP service
-
+    PowerShell -ExecutionPolicy bypass ./DoNotOpenServerManagerAtLogon.ps1 
 
     Pre-Requisites
     ==============
@@ -29,21 +25,9 @@
     Coming soon / planned work
     ==========================
 
-    - N/A.    
+    - Add a test-path to ensure that the path exist
 
 ##################################################################################################>
-
-#
-# Optional parameters to this script file.
-#
-
-
-[CmdletBinding()]
-param(
-    [int]$port
-)
-
-###################################################################################################
 
 #
 # Powershell Configurations
@@ -55,7 +39,8 @@ $ErrorActionPreference = "stop"
 # Ensure that current process can run scripts. 
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force 
 
-###################################################################################################
+##################################################################################################
+
 #
 # Functions used in this script.
 #
@@ -81,29 +66,12 @@ function Handle-LastError
     exit -1
 }
 
-function Validate-Params
+function DoNotOpenServerManagerAtLogon
 {
-    [CmdletBinding()]
-    param(
-    )
-
-    if ([int]::IsNullOrEmpty($port))
-    {
-        throw 'The Script need the new port for the RDP Service'
-    }
+    New-Item -Path HKLM:\Software\Policies\Microsoft\Windows\ -Name Server | Out-Null
+    New-Item -Path HKLM:\Software\Policies\Microsoft\Windows\Server -Name ServerManager | Out-Null
+    Set-itemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Server\ServerManager" -Name "DoNotOpenAtLogon" -Value 1  | Out-Null
 }
-
-
-function ChangePort
-{
-    [CmdletBinding()]
-    param(
-    [int] $port
-    ) 
-    Set-itemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber" -Value $port
-    New-NetFirewallRule -DisplayName "Allow $port on RDP" -Direction "Inbound" -Program "%SystemRoot%\system32\svchost.exe" -Protocol TCP -Localport $port -action allow | Out-Null
-    net stop UmRdpService;net stop termservice;net start UmRdpService;net start termservice | Out-Null
-} 
 
 ##################################################################################################
 
@@ -113,9 +81,8 @@ function ChangePort
 
 try
 {
-    Validate-Params
-    ChangePort -port $port
-    	
+    DoNotOpenServerManagerAtLogon
+   
 	Write-host "Success"
 }
 

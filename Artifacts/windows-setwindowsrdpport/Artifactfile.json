@@ -1,0 +1,36 @@
+{
+
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+
+    "title": "Change windows RDP port",
+
+    "description": "Change the registry and the firewall rules to use RDP",
+
+    "tags": [
+
+        "Regedit",
+		"RDP",
+		"Firewall",
+		"Port"
+
+    ],
+
+    "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
+
+    "targetOsType": "Windows",
+
+    "parameters": {
+	"Port": {
+            "type": "string",
+            "displayName": "Port",
+            "description": "Put here the New Port for the RDP Service"
+        }
+	},
+
+    "runCommand": {
+
+        "commandToExecute": "['powershell.exe -executionpolicy bypass -File SetwindowsRDPport.ps1', parameters('Port'))]"}  
+
+    }
+
+}

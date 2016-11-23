@@ -1,29 +1,14 @@
 {
-
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
-
-    "title": "windows-RDP-443",
-
-    "description": "Change the registry and the firewall rules to use RDP on port 443",
-
+    "title": "DoNotOpenServerManagerAtLogon",
+    "description": "Change the registry to stop the Server Manager to launch at start",
     "tags": [
-
         "Regedit",
-		"RDP",
-		"443"
-
+		"ServerManager"
     ],
-
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
-
     "targetOsType": "Windows",
-
-    "parameters": {},
-
     "runCommand": {
-
-        "commandToExecute": "['powershell.exe -executionpolicy bypass -File windows-RDP-443.ps1']"
-
+        "commandToExecute": "['powershell.exe -executionpolicy bypass -File DoNotOpenServerManagerAtLogon.ps1']"
     }
-
 }
