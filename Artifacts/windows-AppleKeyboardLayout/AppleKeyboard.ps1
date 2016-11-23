@@ -70,11 +70,11 @@ function Unzip
 {
     #Unzip Keyboards in system32
     Write-Host "Unziping keyboards Layouts..."
-    dir ./
+    $path = (Get-Item -Path ".\" -Verbose).FullName
     $shell_app=new-object -com shell.application
-    $zip_file = $shell_app.namespace(".\AppleKeyboard.zip")
+    $zip_file = $shell_app.namespace($path +"\AppleKeyboard.zip") 
     $destination = $shell_app.namespace("C:\windows\system32")
-    $destination.Copyhere($zip_file.items())
+    $destination.Copyhere($zip_file.items()) 
 }
 
 function Reg
