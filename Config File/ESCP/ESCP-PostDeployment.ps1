@@ -154,6 +154,8 @@ try
 
     #Setup Android Studio
 	SetupAndroidStudio
+
+    Remove-Item "c:\PostDeployment.ps1" -force
     
     Write-Host "Success"
 }

@@ -103,6 +103,7 @@ function DonwloadFile
     [string] $url,
     [string] $path
     ) 
+    Write-Host "Downloading the script ... "
 	$client = new-object System.Net.WebClient
 	$client.DownloadFile($url, $path)
 } 
@@ -114,6 +115,7 @@ function RunOnce
     [string] $name,
     [string] $path
     )
+    Write-Host "Setting the system to run once the script ... "
 	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name $name -Value "powershell.exe -executionpolicy bypass -File $path" 
 }
 
