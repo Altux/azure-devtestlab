@@ -82,6 +82,19 @@ function Handle-LastError
     exit -1
 }
 
+function Validate-Params
+{
+    [CmdletBinding()]
+    param(
+    )
+
+    if ([string]::IsNullOrEmpty($EXTENTIONID))
+    {
+        throw 'The Script need a extention id'
+    }
+}
+
+
 function InstallChrome
 {
     powershell.exe -ExecutionPolicy bypass ./startChocolatey.ps1 -PackageList googlechrome
@@ -113,14 +126,15 @@ function InstallExtention ($IDEXTENTION)
 
 try
 {
+    
+    Validate-Params
+
 	# install Google Chrome
 	InstallChrome
 	
 	#Install Extention ID
-    if (-NOT [string]::IsNullOrEmpty($IDEXTENTION))
-    {
-	    InstallExtention -ExtentionID $IDEXTENTION 
-    }
+	InstallExtention -ExtentionID $IDEXTENTION 
+    
 	Write-Host "Success"
 }
 
