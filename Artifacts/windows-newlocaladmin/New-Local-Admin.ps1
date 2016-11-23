@@ -107,6 +107,9 @@ function Add-LocalAdminUser
     {
            Remove-LocalAdminUser -UserName $UserName
     }
+
+    Write-Host "Creating the new Admin : $UserName ..."
+
     $computer = [ADSI]"WinNT://$env:ComputerName"
     $user = $computer.Create("User", $UserName)
     $user.SetPassword($Password)
@@ -124,6 +127,7 @@ function Remove-LocalAdminUser
     param(
         [string] $UserName
     )
+    Write-Host "Removing the User : $UserName ..."
     if ([ADSI]::Exists('WinNT://./' + $UserName))
     {
         $computer = [ADSI]"WinNT://$env:ComputerName"
@@ -149,7 +153,7 @@ try
 {
     Validate-Params
 
-	Add-LocalAdminUser -UserName $Account -Password $Password
+	Add-LocalAdminUser -UserName $Account -Password $Password | Out-Null
 
     Write-Host "Success"
 }

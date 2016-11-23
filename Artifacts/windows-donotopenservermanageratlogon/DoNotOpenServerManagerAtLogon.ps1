@@ -68,6 +68,7 @@ function Handle-LastError
 
 function DoNotOpenServerManagerAtLogon
 {
+    write-host "Set up for Windows Server, this will set the system to not bring the Server Manager At Logon..."
     New-Item -Path HKLM:\Software\Policies\Microsoft\Windows\ -Name Server | Out-Null
     New-Item -Path HKLM:\Software\Policies\Microsoft\Windows\Server -Name ServerManager | Out-Null
     Set-itemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Server\ServerManager" -Name "DoNotOpenAtLogon" -Value 1  | Out-Null
