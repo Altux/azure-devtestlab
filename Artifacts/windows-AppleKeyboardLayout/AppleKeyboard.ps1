@@ -70,6 +70,7 @@ function Unzip
 {
     #Unzip Keyboards in system32
     Write-Host "Unziping keyboards Layouts..."
+    dir ./
     $shell_app=new-object -com shell.application
     $zip_file = $shell_app.namespace(".\AppleKeyboard.zip")
     $destination = $shell_app.namespace("C:\windows\system32")
