@@ -110,6 +110,21 @@ function SetupSDK
     	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
 }
 
+function shortcut
+{
+    [CmdletBinding()]
+    param(
+        [string] $Name,
+        [string] $TargetPath
+    )
+
+    write-host "Creating $Name Shortcut to the Public Desktop..."
+    $WshShell = New-Object -comObject WScript.Shell
+	$Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\$Name.lnk")
+	$Shortcut.TargetPath = $TargetPath
+	$Shortcut.Save()
+}
+
 ##################################################################################################
 
 #
@@ -121,6 +136,9 @@ try
 {	
 	# install AndroidStudio
 	InstallAndroidStudio
+
+    # Create a Shortcut for Android Studio in the Desktop
+    Shortcut -Name "Android Studio" -TargetPath "C:\Program Files\Android\Android Studio\bin\studio64.exe"
 	
 	#Setup the SDK
 	InstallSDK

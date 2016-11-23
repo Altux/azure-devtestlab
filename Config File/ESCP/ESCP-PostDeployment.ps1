@@ -1,3 +1,34 @@
+<##################################################################################################
+
+    Description
+    ===========
+
+	Set up ESCP template at the first start up
+
+    Usage examples
+    ==============
+
+    PowerShell -ExecutionPolicy bypass ./ESCP-PostDeployment.ps1 
+
+    Pre-Requisites
+    ==============
+
+    - Ensure that the PowerShell execution policy is set to unrestricted.
+    - If calling from another process, make sure to execute as script to get the exit code (e.g. "& ./foo.ps1 ...").
+
+    Known issues / Caveats
+    ======================
+    
+    - Using powershell.exe's -File parameter may incorrectly return 0 as exit code, causing the
+      operation to report success, even when it fails.
+
+    Coming soon / planned work
+    ==========================
+
+    - N/A.
+
+##################################################################################################>
+
 #
 # Powershell Configurations
 #
@@ -11,8 +42,29 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 ###################################################################################################
 
 #
-# Functions
+# Functions used in this script.
 #
+
+function Handle-LastError
+{
+    [CmdletBinding()]
+    param(
+    )
+
+    $message = $error[0].Exception.Message
+
+    if ($message)
+    {
+        Write-Host -Object "ERROR: $message" -ForegroundColor Red
+    }
+
+    # IMPORTANT NOTE: Throwing a terminating error (using $ErrorActionPreference = "Stop") still
+    # returns exit code zero from the PowerShell script when using -File. The workaround is to
+    # NOT use -File when calling this script and leverage the try-catch-finally block and return
+    # a non-zero exit code from the catch block.
+
+    exit -1
+}
 
 function Unpin-App 
 { 
@@ -51,30 +103,41 @@ function SetupAndroidStudio{
 
 }
 
+function shortcut
+{
+    [CmdletBinding()]
+    param(
+        [string] $Name,
+        [string] $TargetPath
+    )
 
+    write-host "Creating $Name Shortcut to the Public Desktop..."
+    $WshShell = New-Object -comObject WScript.Shell
+	$Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\$Name.lnk")
+	$Shortcut.TargetPath = $TargetPath
+	$Shortcut.Save()
+}
 
 ##################################################################################################
 
+#
+# Main execution block.
+#
+
 try
 {
-	#Setup Android Studio
-	SetupAndroidStudio
-
 	#Add Shorcut to the desktop
-    	write-host "Creating Google Drive Shortcut to the Desktop..."
-    	$WshShell = New-Object -comObject WScript.Shell
-	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Google Drive.lnk")
-	$Shortcut.TargetPath = "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
-	$Shortcut.Save()
+    shortcut -Name "Google Drive" -TargetPath "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
 
-    	write-host "Creating Android Studio Shortcut to the Desktop..."
-    	$WshShell = New-Object -comObject WScript.Shell
-	$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Android Studio.lnk")
-	$Shortcut.TargetPath = "C:\Program Files\Android\Android Studio\bin\studio64.exe"
-	$Shortcut.Save()
+    #Add Project Android Studio Shortcut to the desktop
+    $WshShell = New-Object -comObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\AndroidStudioProjects.lnk")
+    $Shortcut.TargetPath = "C:\Windows\explorer.exe"
+    $Shortcut.Arguments = "C:\Users\Administrateur\AndroidStudioProjects"
+    $Shortcut.Save()
 
 	#Change Hours
-    	write-host "Changing Hour..."
+    write-host "Changing Hour..."
 	C:\Windows\system32\tzutil /s "Romance Standard Time"
 	
 	Start-Sleep -s 45
@@ -95,12 +158,15 @@ try
 	Pin-App "Google Drive"
 	Pin-App "File Explorer"
 	Pin-App "Google Chrome"
-	return 0
+
+    #Setup Android Studio
+	SetupAndroidStudio
+    
+    Write-Host "Success"
 }
 
 catch
 {
-	write-host "An Error Occured"
-    return -1
+	Handle-LastError
 }
 
