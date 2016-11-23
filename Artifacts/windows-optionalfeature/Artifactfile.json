@@ -1,0 +1,28 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+    "title": "Windows Optional Feature",
+    "description": "Windows Optional Feature Enable / Disable",
+    "tags": [
+        "Feature",
+		"Enable",
+		"Disable",
+	    	"Feature"
+    ],
+    "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
+    "targetOsType": "Windows",
+    "parameters": {
+	"FeatureName": {
+            "type": "string",
+            "displayName": "Feature",
+            "description": "Put here the Feature ex: Internet-Explorer-Optional-amd64"
+	},
+		
+	"Action": {
+            "type": "string",
+	    "allowedValues": [ "Enable", "Disable" ]
+	}	
+	},
+    "runCommand": {
+		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File WindowsOptionalFeature.ps1 ', parameters('FeatureName'), ' ', parameters('Action'))]"
+    }
+}

@@ -1,11 +1,46 @@
+<##################################################################################################
+
+    Description
+    ===========
+
+	Install Chrome and a Chrome extention
+
+    Usage examples
+    ==============
+
+    PowerShell -ExecutionPolicy bypass InstallChromeExtention -EXTENTIONID <ID>
+   
+    Where,
+      <ID> is the ID of the Chrome Application or Extention, this filed can be empty
+
+
+    Pre-Requisites
+    ==============
+
+    - Ensure that the PowerShell execution policy is set to unrestricted.
+    - If calling from another process, make sure to execute as script to get the exit code (e.g. "& ./foo.ps1 ...").
+
+    Known issues / Caveats
+    ======================
+    
+    - Using powershell.exe's -File parameter may incorrectly return 0 as exit code, causing the
+      operation to report success, even when it fails.
+
+    Coming soon / planned work
+    ==========================
+
+    - N/A.    
+
+##################################################################################################>
+
 #
-#Argument
+# Optional parameters to this script file.
 #
 
 
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory=$true)][string] $EXTENTIONID
+    [string] $EXTENTIONID
 )
 
 ###################################################################################################
@@ -23,15 +58,29 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 ###################################################################################################
 
 #
-# Functions
+# Functions used in this script.
 #
 
-function DisplayArgValues
+function Handle-LastError
 {
-	write-host "========== Configuration =========="
-	write-host $("-ExtentionID : " + $EXTENTIONID)
-	write-host "========== Configuration =========="
-} 
+    [CmdletBinding()]
+    param(
+    )
+
+    $message = $error[0].Exception.Message
+
+    if ($message)
+    {
+        Write-Host -Object "ERROR: $message" -ForegroundColor Red
+    }
+
+    # IMPORTANT NOTE: Throwing a terminating error (using $ErrorActionPreference = "Stop") still
+    # returns exit code zero from the PowerShell script when using -File. The workaround is to
+    # NOT use -File when calling this script and leverage the try-catch-finally block and return
+    # a non-zero exit code from the catch block.
+
+    exit -1
+}
 
 function InstallChrome
 {
@@ -58,6 +107,10 @@ function InstallExtention ($IDEXTENTION)
 }
 ##################################################################################################
 
+#
+# Main execution block.
+#
+
 try
 {
 	#Display Argument
@@ -67,14 +120,14 @@ try
 	InstallChrome
 	
 	#Install Extention ID
-	InstallExtention -ExtentionID $IDEXTENTION 
-
-	return 0
+    if (-NOT [string]::IsNullOrEmpty($IDEXTENTION))
+    {
+	    InstallExtention -ExtentionID $IDEXTENTION 
+    }
+	Write-Host "Success"
 }
 
 catch
 {
-	write-host "An Error Occured"
-    return -1
-
+    Handle-LastError
 }

@@ -1,3 +1,34 @@
+<##################################################################################################
+
+    Description
+    ===========
+
+	Install Android Studio
+
+    Usage examples
+    ==============
+
+    PowerShell -ExecutionPolicy bypass InstallAndroidStudio 
+
+    Pre-Requisites
+    ==============
+
+    - Ensure that the PowerShell execution policy is set to unrestricted.
+    - If calling from another process, make sure to execute as script to get the exit code (e.g. "& ./foo.ps1 ...").
+
+    Known issues / Caveats
+    ======================
+    
+    - Using powershell.exe's -File parameter may incorrectly return 0 as exit code, causing the
+      operation to report success, even when it fails.
+
+    Coming soon / planned work
+    ==========================
+
+    - N/A.    
+
+##################################################################################################>
+
 #
 # Powershell Configurations
 #
@@ -11,8 +42,29 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 ###################################################################################################
 
 #
-# Functions
+# Functions used in this script.
 #
+
+function Handle-LastError
+{
+    [CmdletBinding()]
+    param(
+    )
+
+    $message = $error[0].Exception.Message
+
+    if ($message)
+    {
+        Write-Host -Object "ERROR: $message" -ForegroundColor Red
+    }
+
+    # IMPORTANT NOTE: Throwing a terminating error (using $ErrorActionPreference = "Stop") still
+    # returns exit code zero from the PowerShell script when using -File. The workaround is to
+    # NOT use -File when calling this script and leverage the try-catch-finally block and return
+    # a non-zero exit code from the catch block.
+
+    exit -1
+}
 
 function Remove-LocalAdminUser
 {
@@ -52,13 +104,17 @@ function SetupSDK
 {
 	#Create a script to move SDK to the User Folder 
     write-host "Setup Android Studio..."
-        mkdir "C:\Users\Default\AppData\Local\Android"
-        mkdir "C:\Users\Default\AppData\Local\Android\sdk"
-        move "C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*" "C:\Users\Default\AppData\Local\Android\sdk" 
-    write-host "Success"
+    	mkdir "C:\Sdk" | Out-Null
+    	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Sdk' | Out-Null
+	New-Item C:\RunOnce.SDKmove.ps1 -type file -value "mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk';rmdir /q /s C:\Sdk;del c:\RunOnce.SDKmove.ps1 /Q" | Out-Null
+    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
 }
 
 ##################################################################################################
+
+#
+# Main execution block.
+#
 
 try
 
@@ -69,14 +125,13 @@ try
 	#Setup the SDK
 	InstallSDK
 	SetupSDK
-
-	return 0
+    
+    Write-Host "Success"
 }
 
 catch
 {
-	write-host "An Error Occured"
-	return -1
+	Handle-LastError
 }
 
 finally{

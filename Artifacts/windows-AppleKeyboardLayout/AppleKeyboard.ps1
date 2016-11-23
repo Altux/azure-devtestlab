@@ -1,19 +1,86 @@
-#Download Zip
-$url = "https://github.com/Altux/azure-devtestlab/blob/master/Artifacts/windows-AppleKeyboardLayout/AppleKeyboard.zip?raw=true" 
-$path = "C:\Packages\Scripts\AppleKeyboard.zip"
-New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)    
-$client = new-object System.Net.WebClient 
-$client.DownloadFile($url, $path)
+<##################################################################################################
 
+    Description
+    ===========
 
-#Unzip Keyboards in system32
-$shell_app=new-object -com shell.application
-$zip_file = $shell_app.namespace("C:\Packages\Scripts\AppleKeyboard.zip")
-$destination = $shell_app.namespace("C:\windows\system32")
-$destination.Copyhere($zip_file.items())
+	Install Official Apple Keyboard From BootCamp
 
-#Change Registry
-$Reg = @"
+    Usage examples
+    ==============
+
+    PowerShell -ExecutionPolicy bypass ./AppleKeyboard.ps1
+
+    Pre-Requisites
+    ==============
+
+    - Ensure that the PowerShell execution policy is set to unrestricted.
+    - If calling from another process, make sure to execute as script to get the exit code (e.g. "& ./foo.ps1 ...").
+
+    Known issues / Caveats
+    ======================
+    
+    - Using powershell.exe's -File parameter may incorrectly return 0 as exit code, causing the
+      operation to report success, even when it fails.
+
+    Coming soon / planned work
+    ==========================
+
+    - N/A.    
+
+##################################################################################################>
+
+#
+# Powershell Configurations
+#
+
+# Note: Because the $ErrorActionPreference is "Stop", this script will stop on first failure. 
+$ErrorActionPreference = "stop"
+
+# Ensure that current process can run scripts. 
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force 
+
+###################################################################################################
+
+#
+# Functions used in this script.
+#
+
+function Handle-LastError
+{
+    [CmdletBinding()]
+    param(
+    )
+
+    $message = $error[0].Exception.Message
+
+    if ($message)
+    {
+        Write-Host -Object "ERROR: $message" -ForegroundColor Red
+    }
+
+    # IMPORTANT NOTE: Throwing a terminating error (using $ErrorActionPreference = "Stop") still
+    # returns exit code zero from the PowerShell script when using -File. The workaround is to
+    # NOT use -File when calling this script and leverage the try-catch-finally block and return
+    # a non-zero exit code from the catch block.
+
+    exit -1
+}
+
+function Unzip
+{
+    #Unzip Keyboards in system32
+    Write-Host "Unziping keyboards Layouts..."
+    $shell_app=new-object -com shell.application
+    $zip_file = $shell_app.namespace(".\AppleKeyboard.zip")
+    $destination = $shell_app.namespace("C:\windows\system32")
+    $destination.Copyhere($zip_file.items())
+}
+
+function Reg
+{
+    #Change Registry
+    Write-Host "Merging Registry entry for the keyboards Layouts..."
+    $Reg = @"
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layouts]
@@ -151,5 +218,24 @@ Windows Registry Editor Version 5.00
 "Layout Component ID"="D1502D2EF02F4e4b8D313D3C0B0457D0"
 
 "@
-$reg | Out-file AppleKeyboard.reg
-regedit /s AppleKeyboard.reg
+    $reg | Out-file AppleKeyboard.reg
+    regedit /s AppleKeyboard.reg
+
+}
+
+###################################################################################################
+
+#
+# Main execution block.
+#
+
+try{
+    Unzip
+    Reg
+
+    Write-Host "Success"
+}
+catch{
+    Handle-LastError
+}
+
