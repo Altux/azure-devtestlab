@@ -18,5 +18,9 @@
             }
 	},
     "runCommand": {
-        "commandToExecute": "['powershell.exe -executionpolicy bypass -File SetwindowsRDPport.ps1', parameters('Port')]"}  
-    }
+
+		"commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File SetwindowsRDPport.ps1 ', parameters('Port'))]"
+	
+	}  
+
+}
