@@ -113,9 +113,6 @@ function InstallExtention ($IDEXTENTION)
 
 try
 {
-	#Display Argument
-	DisplayArgValues
-
 	# install Google Chrome
 	InstallChrome
 	
