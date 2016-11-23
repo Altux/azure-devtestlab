@@ -1,0 +1,1 @@
+Les roles dans ce dossier permettent la CREATION (rien d'autre) des roles Enseignant et Etudiant défini par L'ESCP Europe
