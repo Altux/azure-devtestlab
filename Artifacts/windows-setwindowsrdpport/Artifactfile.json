@@ -4,9 +4,9 @@
     "description": "Change the registry and the firewall rules to use RDP",
     "tags": [
         "Regedit",
-		    "RDP",
-		    "Firewall",
-		    "Port"
+		"RDP",
+		"Firewall",
+		"Port"
     ],
     "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
     "targetOsType": "Windows",
