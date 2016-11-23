@@ -107,7 +107,7 @@ function SetupSDK
     	mkdir "C:\Sdk" | Out-Null
     	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Sdk' | Out-Null
 	New-Item C:\RunOnce.SDKmove.ps1 -type file -value "Start-Sleep -s 20;mkdir 'C:\Users\Administrateur\AppData\Local\Android';mkdir 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move 'C:\Sdk\*' 'C:\Users\Administrateur\AppData\Local\Android\Sdk';Remove-Item C:\Sdk -force;Remove-Item c:\RunOnce.SDKmove.ps1 -force" | Out-Null
-    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\Packages\Scripts\RunOnce.SDKmove.ps1'" | Out-Null
+    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\RunOnce.SDKmove.ps1'" | Out-Null
 }
 
 function shortcut
