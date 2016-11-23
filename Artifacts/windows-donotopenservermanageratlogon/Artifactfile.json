@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
-    "title": "DoNotOpenServerManagerAtLogon",
+    "title": "Do Not Open Server Manager At Logon",
     "description": "Change the registry to stop the Server Manager to launch at start",
     "tags": [
         "Regedit",

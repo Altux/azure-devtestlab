@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
-    "title": "Disable-ie-security",
+    "title": "Disable ie security enforcement",
     "description": "Disable ie security enforcement by registry editing",
     "tags": [
 	    "Regedit",
