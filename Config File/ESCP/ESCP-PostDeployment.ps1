@@ -87,7 +87,7 @@ function SetupAndroidStudio{
 		C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)" | Out-Null
 
 	#Download the config.ini
-		$url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Applications%20Config%20File/Android%20Studio/config.ini"
+		$url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/AVD-config.ini"
 		$path = "C:\Users\Administrateur\.android\avd\ESCP-V3_API_10.avd\config.ini"
 		New-Item -ItemType Directory -Force -Path (Split-Path -parent $path) | Out-Null    
 		$client = new-object System.Net.WebClient 
@@ -128,13 +128,6 @@ try
 {
 	#Add Shorcut to the desktop
     shortcut -Name "Google Drive" -TargetPath "C:\Program Files (x86)\Google\Drive\googledrivesync.exe"
-
-    #Add Project Android Studio Shortcut to the desktop
-    $WshShell = New-Object -comObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\AndroidStudioProjects.lnk")
-    $Shortcut.TargetPath = "C:\Windows\explorer.exe"
-    $Shortcut.Arguments = "C:\Users\Administrateur\AndroidStudioProjects"
-    $Shortcut.Save()
 
 	#Change Hours
     write-host "Changing Hour..."
