@@ -84,7 +84,7 @@ function SetupAndroidStudio{
 	Write-host "Setup of the Android Studio"
 
 	#Creation of a AVD
-		C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)"
+		C:\Users\Administrateur\AppData\Local\Android\Sdk\tools\android.bat create avd -t "android-10" -b "armeabi" -n "ESCP-V3_API_10" -d "4in WVGA (Nexus S)" --force
 
 	#Download the config.ini
 		$url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/AVD-config.ini"
