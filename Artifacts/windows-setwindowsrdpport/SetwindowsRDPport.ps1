@@ -101,8 +101,11 @@ function ChangePort
     param(
     [String] $port
     ) 
+    Write-Host "Set PortNumber in registry to $port ..."
     Set-itemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber" -Value $port
+    Write-Host "Add PortNumber $port in firewall ..."
     New-NetFirewallRule -DisplayName "Allow $port on RDP" -Direction "Inbound" -Program "%SystemRoot%\system32\svchost.exe" -Protocol TCP -Localport $port -action allow 
+    Write-Host "Restarting Services ..."
     net stop UmRdpService;net stop termservice;net start UmRdpService;net start termservice 
 } 
 
