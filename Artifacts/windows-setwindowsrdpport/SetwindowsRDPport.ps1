@@ -118,7 +118,7 @@ function ChangePort
 try
 {
     Validate-Params
-    ChangePort -port $port
+    ChangePort -port $port | Out-Null
     	
 	Write-host "Success"
 }
