@@ -116,7 +116,6 @@ function InstallExtention ($IDEXTENTION)
         New-Item -Path "HKLM:\Software\Wow6432Node\Google\Chrome\Extensions" -Name $EXTENTIONID | Out-Null
 	}
     Set-ItemProperty -Path "HKLM:\Software\Wow6432Node\Google\Chrome\Extensions\$EXTENTIONID" -Name "update_url" -Value "https://clients2.google.com/service/update2/crx" | Out-Null
-    Write-host "Success."
 }
 ##################################################################################################
 
