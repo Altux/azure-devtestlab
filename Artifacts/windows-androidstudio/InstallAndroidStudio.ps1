@@ -104,10 +104,11 @@ function SetupSDK
 {
 	#Create a script to move SDK to the User Folder 
     write-host "Setup Android Studio..."
-    	mkdir "C:\Sdk" | Out-Null
-    	move 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' 'C:\Sdk' | Out-Null
-	New-Item C:\RunOnce.SDKmove.ps1 -type file -value "New-Item -ItemType Directory -Force -Path 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move-item -path 'C:\Sdk\*' -destination 'C:\Users\Administrateur\AppData\Local\Android\Sdk';Remove-Item C:\Sdk -force;Remove-Item c:\RunOnce.SDKmove.ps1 -force" | Out-Null
-    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\RunOnce.SDKmove.ps1'" | Out-Null
+        New-Item -ItemType Directory -Force -Path "C:\Sdk" 
+        move-item -path 'C:\Users\artifactInstaller\AppData\Local\Android\android-sdk\*' -destination 'C:\Sdk' 
+
+	New-Item C:\RunOnce.SDKmove.ps1 -type file -value "New-Item -ItemType Directory -Force -Path 'C:\Users\Administrateur\AppData\Local\Android\Sdk';move-item -path 'C:\Sdk\*' -destination 'C:\Users\Administrateur\AppData\Local\Android\Sdk';Remove-Item C:\Sdk -force;Remove-Item c:\RunOnce.SDKmove.ps1 -force"
+    	Set-itemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunOnce.SDKmove.ps1" -Value "powershell.exe -executionpolicy bypass -File 'C:\RunOnce.SDKmove.ps1'"
 
 
 
