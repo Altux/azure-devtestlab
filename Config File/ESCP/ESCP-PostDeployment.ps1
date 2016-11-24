@@ -89,7 +89,7 @@ function SetupAndroidStudio{
 	#Download the config.ini
 		$url = "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/AVD-config.ini"
 		$path = "C:\Users\Administrateur\.android\avd\ESCP-V3_API_10.avd\config.ini"
-		New-Item -ItemType Directory -Force -Path (Split-Path -parent $path) | Out-Null    
+		New-Item -ItemType Directory -Force -Path (Split-Path -parent $path)  
 		$client = new-object System.Net.WebClient 
 		$client.DownloadFile($url, $path) 
 
@@ -99,7 +99,7 @@ function SetupAndroidStudio{
 		$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\AndroidStudioProjects.lnk")
 		$Shortcut.TargetPath = "C:\Windows\explorer.exe"
 		$Shortcut.Arguments ="C:\Users\Administrateur\AndroidStudioProjects"
-		$Shortcut.Save() | Out-Null
+		$Shortcut.Save() 
 
 }
 
@@ -153,9 +153,9 @@ try
 	Pin-App "Google Chrome"
 
     #Setup Android Studio
-	SetupAndroidStudio
+	SetupAndroidStudio | Out-Null
 
-    Remove-Item "c:\PostDeployment.ps1" -force
+    Remove-Item "c:\PostDeployment.ps1" -force | Out-Null
     
     Write-Host "Success"
 }
