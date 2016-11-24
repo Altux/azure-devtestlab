@@ -139,14 +139,14 @@ try
 
 {	
 	# install AndroidStudio
-	InstallAndroidStudio
+	InstallAndroidStudio | Out-Null
 
     # Create a Shortcut for Android Studio in the Desktop
     Shortcut -Name "Android Studio" -TargetPath "C:\Program Files\Android\Android Studio\bin\studio64.exe"
 	
 	#Setup the SDK
-	InstallSDK
-	SetupSDK
+	InstallSDK | Out-Null
+	SetupSDK | Out-Null
     
     Write-Host "Success"
 }
