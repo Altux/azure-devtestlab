@@ -4,7 +4,7 @@
   "parameters": {
     "newVMName": {
       "type": "string",
-      "defaultValue": "TEST2"
+      "defaultValue": "TEST"
     },
     "labName": {
       "type": "string",
@@ -21,29 +21,21 @@
     "password": {
       "type": "securestring"
     },
-    "Install_Chocolatey_Packages.packages": {
-      "type": "string",
-      "defaultValue": "googledrive"
-    },
     "Change_windows_RDP_port.Port": {
       "type": "string",
       "defaultValue": "443"
     },
-    "Install_Chrome_Extention.ID": {
-      "type": "string",
-      "defaultValue": "gbchcmhmhahfdphkhkmpfmihenigjmpp"
-    },
     "New_local_Administrator.Name": {
       "type": "string",
-      "defaultValue": "Administrateur2"
+      "defaultValue": "Adinistrateur2"
     },
     "New_local_Administrator.Password": {
       "type": "string",
       "defaultValue": "SuperPassword!"
     },
-    "Post_Deployment_Script.URL": {
+    "Install_Chrome_Extention.ID": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/ESCP-PostDeployment.ps1"
+      "defaultValue": "gbchcmhmhahfdphkhkmpfmihenigjmpp"
     },
     "Windows_Optional_Feature.FeatureName": {
       "type": "string",
@@ -52,6 +44,14 @@
     "Windows_Optional_Feature.Action": {
       "type": "string",
       "defaultValue": "Disable"
+    },
+    "Install_Chocolatey_Packages.packages": {
+      "type": "string",
+      "defaultValue": "googledrive"
+    },
+    "Post_Deployment_Script.URL": {
+      "type": "string",
+      "defaultValue": "https://raw.githubusercontent.com/Altux/azure-devtestlab/master/Config%20File/ESCP/ESCP-PostDeployment.ps1"
     }
   },
   "variables": {
@@ -83,15 +83,6 @@
         "isAuthenticationWithSshKey": false,
         "artifacts": [
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-chocolatey')]",
-            "parameters": [
-              {
-                "name": "packages",
-                "value": "[parameters('Install_Chocolatey_Packages.packages')]"
-              }
-            ]
-          },
-          {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-androidstudio')]"
           },
           {
@@ -107,19 +98,7 @@
             ]
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-ieenforcement')]"
-          },
-          {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-donotopenservermanageratlogon')]"
-          },
-          {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-chromeextention')]",
-            "parameters": [
-              {
-                "name": "ID",
-                "value": "[parameters('Install_Chrome_Extention.ID')]"
-              }
-            ]
           },
           {
             "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-newlocaladmin')]",
@@ -135,11 +114,11 @@
             ]
           },
           {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-postdeployment')]",
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-chromeextention')]",
             "parameters": [
               {
-                "name": "URL",
-                "value": "[parameters('Post_Deployment_Script.URL')]"
+                "name": "ID",
+                "value": "[parameters('Install_Chrome_Extention.ID')]"
               }
             ]
           },
@@ -156,6 +135,24 @@
               {
                 "name": "Action",
                 "value": "[parameters('Windows_Optional_Feature.Action')]"
+              }
+            ]
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-chocolatey')]",
+            "parameters": [
+              {
+                "name": "packages",
+                "value": "[parameters('Install_Chocolatey_Packages.packages')]"
+              }
+            ]
+          },
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'repo-jnur3wqm66744', 'windows-postdeployment')]",
+            "parameters": [
+              {
+                "name": "URL",
+                "value": "[parameters('Post_Deployment_Script.URL')]"
               }
             ]
           }
