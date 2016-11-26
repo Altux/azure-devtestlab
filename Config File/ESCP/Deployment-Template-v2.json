@@ -42,7 +42,7 @@
     },
     "allowedVmSizes": {
       "type": "string",
-      "defaultValue": "\"Standard_DS11_v2\"",
+      "defaultValue": "Standard_DS11_v2",
       "minLength": 3,
       "metadata": {
         "description": "Set 'allowed VM sizes' policy: A comma-separated list of VM sizes that are allowed in the lab."
