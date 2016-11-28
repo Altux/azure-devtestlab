@@ -1,0 +1,22 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+    "title": "Ask New Password",
+    "description": "Ask to change the Password to a user",
+    "tags": [
+        "Windows",
+        "Account",
+		"Password"
+    ],
+    "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
+    "targetOsType": "Windows",
+    "parameters": {
+	      "Name": {
+            "type": "string",
+            "displayName": "Account",
+            "description": "Enter the Account Name"
+        }
+	},
+    "runCommand": {
+    	  "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File asknewpassword.ps1 ', parameters('Name'))]"    
+    }
+}
