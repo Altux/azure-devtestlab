@@ -10,7 +10,11 @@
                     "Microsoft.Compute/virtualMachines/deallocate/action",
                     "Microsoft.Network/networkInterfaces/read",
                     "Microsoft.Network/publicIPAddresses/read",
-                    "Microsoft.Compute/virtualMachines/write"
+                    "Microsoft.Compute/virtualMachines/write",
+                    "microsoft.compute/virtualmachines/extensions/write",
+                    "microsoft.compute/virtualmachines/extensions/read",
+                    "Microsoft.Resources/deployments/write",
+                    "Microsoft.Resources/*/read" 
                 ],
     "NotActions":  [
 
