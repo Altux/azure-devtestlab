@@ -1,0 +1,19 @@
+{
+    "Name":  "Role Enseignant",
+    "Id":  "",
+    "IsCustom":  true,
+    "Description":  "Permet de voir uniquement les machines du lab et de realise les actions suivantes: Connecter, Demarrer, Eteindre les VMs",
+    "Actions":  [
+                    "Microsoft.DevTestLab/labs/read",
+                    "Microsoft.DevTestLab/labs/virtualMachines/read",
+                    "Microsoft.DevTestLab/labs/virtualMachines/Start/action",
+                    "Microsoft.DevTestLab/labs/virtualMachines/Stop/action",
+                    "Microsoft.DevTestLab/labs/virtualMachines/ApplyArtifacts/action"
+                ],
+    "NotActions":  [
+
+                   ],
+    "AssignableScopes":  [
+                             "/subscriptions/9208d6d6-5887-445c-8d6e-b5ac739089ba"
+                         ]
+}

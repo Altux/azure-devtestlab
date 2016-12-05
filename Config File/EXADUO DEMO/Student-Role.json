@@ -1,0 +1,25 @@
+{
+    "Name":  "Role Etudiant",
+    "Id":  "",
+    "IsCustom":  true,
+    "Description":  "Permet uniquement d'interagir avec les VMs accordees et de realiser les actions suivantes: Connecter, Demarrer, Eteindre les VMs",
+    "Actions":  [
+                    "Microsoft.Compute/virtualMachines/read",
+                    "Microsoft.Compute/virtualMachines/restart/action",
+                    "Microsoft.Compute/virtualMachines/start/action",
+                    "Microsoft.Compute/virtualMachines/deallocate/action",
+                    "Microsoft.Network/networkInterfaces/read",
+                    "Microsoft.Network/publicIPAddresses/read",
+                    "Microsoft.Compute/virtualMachines/write",
+                    "microsoft.compute/virtualmachines/extensions/write",
+                    "microsoft.compute/virtualmachines/extensions/read",
+                    "Microsoft.Resources/deployments/write",
+                    "Microsoft.Resources/*/read" 
+                ],
+    "NotActions":  [
+
+                   ],
+    "AssignableScopes":  [
+                             "/subscriptions/9208d6d6-5887-445c-8d6e-b5ac739089ba"
+                         ]
+}
