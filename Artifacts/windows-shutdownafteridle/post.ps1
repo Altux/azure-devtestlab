@@ -1,4 +1,4 @@
-copy "./windows-shutdownIdle90min.ps1" "windows-shutdownIdle90min.ps1"
+copy "./windows-shutdownIdle90min.ps1" "C:\windows-shutdownIdle90min.ps1"
 
 $U = "SYSTEM"
 $A = New-ScheduledTaskAction -Execute "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -argument "-noninteractive -noprofile -command '&{C:\windows-shutdownIdle90min.ps1}'"
