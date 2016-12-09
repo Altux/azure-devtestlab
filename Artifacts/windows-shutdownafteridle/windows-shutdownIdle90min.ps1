@@ -1,53 +1,26 @@
-﻿Add-Type @'
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-
-namespace PInvoke.Win32 {
-
-    public static class UserInput {
-
-        [DllImport("user32.dll", SetLastError=false)]
-        private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct LASTINPUTINFO {
-            public uint cbSize;
-            public int dwTime;
-        }
-
-        public static DateTime LastInput {
-            get {
-                DateTime bootTime = DateTime.UtcNow.AddMilliseconds(-Environment.TickCount);
-                DateTime lastInput = bootTime.AddMilliseconds(LastInputTicks);
-                return lastInput;
-            }
-        }
-
-        public static TimeSpan IdleTime {
-            get {
-                return DateTime.UtcNow.Subtract(LastInput);
-            }
-        }
-
-        public static int LastInputTicks {
-            get {
-                LASTINPUTINFO lii = new LASTINPUTINFO();
-                lii.cbSize = (uint)Marshal.SizeOf(typeof(LASTINPUTINFO));
-                GetLastInputInfo(ref lii);
-                return lii.dwTime;
-            }
-        }
-    }
-}
-'@
-
-$idle_timeout = New-TimeSpan -Minutes 90
-
+﻿$max = 1800
+$timer = 0
 do{
-$idle_time = [PInvoke.Win32.UserInput]::IdleTime;
-	if ($idle_time -gt $idle_timeout) {
-        shutdown -s -f -t 0
+Start-Sleep -seconds 10
+$sessions = query session | ?{ $_ -notmatch '^ SESSIONNAME' } | %{
+    $item = "" | Select "Active", "SessionName", "Username", "Id", "State", "Type", "Device"
+    $item.Active = $_.Substring(0,1) -match '>'
+    $item.SessionName = $_.Substring(1,18).Trim()
+    $item.Username = $_.Substring(19,20).Trim()
+    $item.Id = $_.Substring(39,9).Trim()
+    $item.State = $_.Substring(48,8).Trim()
+    $item.Type = $_.Substring(56,12).Trim()
+    $item.Device = $_.Substring(68).Trim()
+    $item
+} 
+$check = ($sessions | ?{ $_.State -eq 'Active' }).username 
+    if ($check -eq $empty){
+        $timer+=10
+        if ($timer -gt $max){
+            shutdown -s -f -t 0
+        }
     }
-start-sleep 10
-}while(1 -eq 1)
+    else{$timer = 0}
+}while (1 -eq 1)
+
+
