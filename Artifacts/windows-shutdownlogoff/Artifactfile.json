@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
-    "title": "Shutdown after 90 min idle",
-    "description": "Download shutdown timer and launch it at startup",
+    "title": "shutdownlogoff",
+    "description": "shutdown the computer after 30min without any user connected",
     "tags": [
         "Windows",
 		"shutdown"
