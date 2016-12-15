@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "newVMName": {
-      "type": "array",
+      "type": "string",
       "metadata": {
         "description": "Names of the new VMs"
       }
@@ -63,7 +63,7 @@
     {
       "apiVersion": "2016-05-15",
       "type": "Microsoft.DevTestLab/labs/virtualmachines",
-      "name": "[concat(parameters('labName'), '/', parameters('newVMName')[copyIndex()])]",
+      "name": "[concat(parameters('labName'), '/', parameters('newVMName'))]",
       "location": "[resourceGroup().location]",
       "copy": { 
          "name": "VMIteration", 
