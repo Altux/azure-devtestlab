@@ -106,9 +106,9 @@ try
 	Unpin-App "Remote Desktop Connection"
 
 	#Pin tiles needed
-    pin-App "Word"
-    pin-App "Excel"
-    Pin-App "Powerpoint"
+    pin-App "Word 2013"
+    pin-App "Excel 2013"
+    Pin-App "Powerpoint 2013"
 	Pin-App "File Explorer"
 
 
