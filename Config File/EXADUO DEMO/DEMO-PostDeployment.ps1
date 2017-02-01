@@ -8,7 +8,7 @@
     Usage examples
     ==============
 
-    PowerShell -ExecutionPolicy bypass ./ESCP-PostDeployment.ps1 
+    PowerShell -ExecutionPolicy bypass ./DEMO-PostDeployment.ps1 
 
     Pre-Requisites
     ==============
