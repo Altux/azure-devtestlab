@@ -7,8 +7,7 @@
                     "Microsoft.DevTestLab/labs/read",
                     "Microsoft.DevTestLab/labs/virtualMachines/read",
                     "Microsoft.DevTestLab/labs/virtualMachines/Start/action",
-                    "Microsoft.DevTestLab/labs/virtualMachines/Stop/action",
-                    "Microsoft.DevTestLab/labs/virtualMachines/ApplyArtifacts/action"
+                    "Microsoft.DevTestLab/labs/virtualMachines/Stop/action"
                 ],
     "NotActions":  [
 
