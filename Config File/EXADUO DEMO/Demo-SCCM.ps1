@@ -8,7 +8,7 @@
     Usage examples
     ==============
 
-    PowerShell -ExecutionPolicy bypass ./DEMO-SCCM.ps1 
+    PowerShell -ExecutionPolicy bypass ./DEMO-PostDeployment.ps1 
 
     Pre-Requisites
     ==============
@@ -106,13 +106,13 @@ try
 	Unpin-App "Remote Desktop Connection"
 
 	#Pin tiles needed
-    #Pin-App "Server Manager"
-    #Pin-App "SCCM console"
+    Pin-App "Server Manager"
+    Pin-App "Configuration Manager Console"
 	Pin-App "File Explorer"
 
     #DELETE DESKTOP FOler
     Get-ChildItem -Path  ([Environment]::GetFolderPath("Desktop")) -Recurse | Remove-Item -force -Recurse -Confirm:$false 
-
+    Get-ChildItem -Path  "C:\Users\Public\Desktop" -Recurse | Remove-Item -force -Recurse -Confirm:$false 
 
     Remove-Item "c:\PostDeployment.ps1" -force | Out-Null
     
