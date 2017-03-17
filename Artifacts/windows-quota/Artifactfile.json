@@ -1,0 +1,14 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+    "title": "Quota",
+    "description": "shutdown the computer after 36 Hours of usage",
+    "tags": [
+        "Windows",
+		"shutdown"
+    ],
+    "iconUri": "https://chocolatey.org/content/packageimages/Posh-GitHub.0.0.2.png",
+    "targetOsType": "Windows",
+    "runCommand": {
+        "commandToExecute": "['powershell.exe -executionpolicy bypass -File post.ps1']"
+		}
+}
