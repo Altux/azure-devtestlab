@@ -6,7 +6,7 @@ $usersession = qwinsta administrateur | foreach-object {
 if ($usersession.Username -eq "administrateur"){
     Write-Output "Administrateur is connected"
 
-    $maxvalue = 2160 #36h
+    $maxvalue = 900 #15h
     $Path = "C:\ProgramData\exaduo\QUota\" 
     $file = "value.txt"
 
